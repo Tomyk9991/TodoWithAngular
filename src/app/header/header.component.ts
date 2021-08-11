@@ -28,3 +28,8 @@ export class HeaderComponent implements OnInit {
         this.currentlySelected = button;
     }
 }
+
+class HeaderRenderData {
+    constructor(public routerLink: string, public translateKey: string) {
+    }
+}
