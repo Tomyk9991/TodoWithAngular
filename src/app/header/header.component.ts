@@ -1,5 +1,5 @@
 import {Component, OnInit, Output} from '@angular/core';
-import LocaleManager from "../Utilities/LocaleManager";
+import {LocaleService} from "../Utilities/Services/locale.service";
 
 @Component({
     selector: 'app-header',
@@ -11,16 +11,20 @@ export class HeaderComponent implements OnInit {
     public myListsLocale: string = "";
     public settingsLocale: string = "";
 
-    constructor() {
+    public currentlySelected: number = 0;
+
+    constructor(private locale: LocaleService) {
     }
 
     ngOnInit(): void {
-        this.homeLocale = LocaleManager.translate("Home");
-        this.myListsLocale = LocaleManager.translate("MyLists");
-        this.settingsLocale = LocaleManager.translate("Settings");
+        this.homeLocale = this.locale.translate("Home");
+        this.myListsLocale = this.locale.translate("MyLists");
+        this.settingsLocale = this.locale.translate("Settings");
+
+        this.currentlySelected = 0;
     }
 
     onHeaderClicked(button: number): void {
-        console.log(button);
+        this.currentlySelected = button;
     }
 }
