@@ -25,9 +25,4 @@ export class ListEntryPreviewComponent implements OnInit {
             this.entry.checked = state;
         }
     }
-
-    // callback from html
-    public listEntryClicked(): void {
-        console.log("clicked");
-    }
 }

@@ -1,65 +1,53 @@
 import {Injectable} from '@angular/core';
 import ToDoList from "../../../Model/ToDoList/ToDoList";
 import StringEntry from "../../../Model/ToDoList/StringEntry";
+import Sleep from "../Sleep";
+import BackendMockToDoList from "./BackendMockToDoList";
+import Hash from "../Hash";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ToDoListService {
     constructor() {
-
     }
 
-    public getLists(amount: number): ToDoList[] {
-        //TODO Database
+    public async getList(hash: number): Promise<ToDoList> {
+        await Sleep(Math.random() * 50);
+
+        let list: ToDoList = BackendMockToDoList.get(hash);
+
+        if (list != null)
+            return list;
+
+        throw new DOMException("Not found");
+    }
+
+    public async getLists(amount: number): Promise<ToDoList[]> {
         let lists: ToDoList[] = [];
 
         for (let i = 0; i < amount; i++) {
-            lists.push(this.generateRandomListFromHash(this.stringToHash(new Date().toISOString())));
+            let date: Date = new Date();
+            let list: ToDoList = this.generateListFromDate(date, Hash(date.toISOString()), String(i));
+
+            lists.push(list);
+            BackendMockToDoList.add(Hash(date.toISOString()), list);
+
+            await Sleep(Math.random() * 50);
         }
 
         return lists;
     }
 
-    private generateRandomListFromHash(hash: number): ToDoList {
-        let length: number = this.random(hash++) * 10;
+    private generateListFromDate(date: Date, hash: number, content: string = ""): ToDoList {
+        let str: string = date.toLocaleDateString();
+        let title: string = date.toISOString();
 
-        let str: string = this.generateRandomString(length);
-        let title: string = this.generateRandomString(length);
 
-        let list: ToDoList = new ToDoList(title);
-        list.addItem(new StringEntry(str));
+        let list: ToDoList = new ToDoList(title, hash);
+        list.addItem(new StringEntry(content !== "" ? content : str));
 
         return list;
-    }
-
-    private random(seed: number): number {
-        let x: number = Math.sin(seed) * 10000;
-        return x - Math.floor(x);
-    }
-    private generateRandomString(length: number): string {
-        let result = '';
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        const charactersLength = characters.length;
-        for (let i = 0; i < 10; i++ ) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    }
-
-    private stringToHash(string: string): number {
-        let hash: number = 0;
-        let i: number = 0;
-        let char;
-        if (string.length === 0) return hash;
-
-        for (let i = 0; i < string.length; i++) {
-            char = string.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash |= 0; //Convert to 32bit integer
-        }
-
-        return hash;
     }
 }
 

@@ -14,7 +14,7 @@ export class ListOverviewComponent implements OnInit {
     constructor(private listService: ToDoListService) {
     }
 
-    ngOnInit(): void {
-        this.lists = this.listService.getLists(this.amount);
+    async ngOnInit(): Promise<any> {
+        this.lists = await this.listService.getLists(this.amount);
     }
 }
