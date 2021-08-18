@@ -1,4 +1,10 @@
+body {
+    background-color: var(--background);
+    color: white;
+    font-family: "Century Gothic";
+}
 :root {
+    --background: #181818;
     --main-grey: #515151;
     --main-grey-2: #717171;
     --darker-black: #313131;

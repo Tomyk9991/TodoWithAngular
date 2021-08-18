@@ -1,0 +1,42 @@
+.entry {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin: 1px;
+    background-color: var(--main-grey);
+}
+
+.entry:hover {
+    background-color: var(--main-grey-2);
+}
+
+h2 {
+    transform: translateY(-15px);
+    padding-left: 10px;
+}
+
+.checkBox {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-color: pink;
+    border-radius: 10px;
+}
+
+.checkBox.checked {
+    background-color: green;
+}
+
+.checkBox.unchecked {
+    background-color: red;
+}
+
+.first {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.last {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}

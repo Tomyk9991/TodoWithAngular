@@ -1,14 +1,10 @@
-<div class="header">
-    <a routerLink="/home" (click)="onHeaderClicked(0)">
-        {{this.homeLocale}}
-        <div [ngClass]="this.currentlySelected == 0 ? 'selected' : 'unselected'"></div>
-    </a>
-    <a routerLink="/mylists" (click)="onHeaderClicked(1)">
-        {{this.myListsLocale}}
-        <div [ngClass]="this.currentlySelected == 1 ? 'selected' : 'unselected'"></div>
-    </a>
-    <a routerLink="/settings" (click)="onHeaderClicked(2)">
-        {{this.settingsLocale}}
-        <div [ngClass]="this.currentlySelected == 2 ? 'selected' : 'unselected'"></div>
-    </a>
-</div>
+<nav>
+    <div class="header">
+        <a *ngFor="let headerElement of this.headerElements; index as i"
+           [routerLink]="headerElement.routerLink"
+           (click)="onHeaderClicked(i)">
+            {{headerElement.locale}}
+            <div [ngClass]="this.currentlySelected == i ? 'selected' : 'unselected'"></div>
+        </a>
+    </div>
+</nav>

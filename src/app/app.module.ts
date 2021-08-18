@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { ListOverviewComponent } from './list-overview/list-overview.component';
-import { SettingsComponent } from './settings/settings.component';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import {AppRoutingModule} from './app-routing.module';
+import {HomeComponent} from './home/home.component';
+import {ListOverviewComponent} from './list-overview/list-overview.component';
+import {SettingsComponent} from './settings/settings.component';
+import { ListEntryPreviewComponent } from './list-entry-preview/list-entry-preview.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SettingsComponent } from './settings/settings.component';
     HeaderComponent,
     HomeComponent,
     ListOverviewComponent,
-    SettingsComponent
+    SettingsComponent,
+    ListEntryPreviewComponent
   ],
   imports: [
     BrowserModule,

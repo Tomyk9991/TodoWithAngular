@@ -1,5 +1,6 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LocaleService} from "../Utilities/Services/locale.service";
+import {Event, NavigationEnd, Router} from "@angular/router";
 
 @Component({
     selector: 'app-header',
@@ -7,21 +8,21 @@ import {LocaleService} from "../Utilities/Services/locale.service";
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    public homeLocale: string = "";
-    public myListsLocale: string = "";
-    public settingsLocale: string = "";
-
+    public headerElements: HeaderElement[] = [];
     public currentlySelected: number = 0;
 
-    constructor(private locale: LocaleService) {
+    constructor(private locale: LocaleService, private router: Router) {
+        router.events.subscribe((event:Event) => {
+            if(event instanceof NavigationEnd) {
+                this.currentlySelected = this.headerElements.findIndex((element: HeaderElement) => element.routerLink === router.url);
+            }
+        });
     }
 
     ngOnInit(): void {
-        this.homeLocale = this.locale.translate("Home");
-        this.myListsLocale = this.locale.translate("MyLists");
-        this.settingsLocale = this.locale.translate("Settings");
-
-        this.currentlySelected = 0;
+        this.headerElements.push(new HeaderElement("/home", this.locale.translate("Home")));
+        this.headerElements.push(new HeaderElement("/mylists", this.locale.translate("MyLists")));
+        this.headerElements.push(new HeaderElement("/settings", this.locale.translate("Settings")));
     }
 
     onHeaderClicked(button: number): void {
@@ -29,7 +30,6 @@ export class HeaderComponent implements OnInit {
     }
 }
 
-class HeaderRenderData {
-    constructor(public routerLink: string, public translateKey: string) {
-    }
+class HeaderElement {
+    constructor(public routerLink: string, public locale: string) {}
 }
