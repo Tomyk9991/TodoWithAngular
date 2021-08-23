@@ -7,7 +7,7 @@ export default class StringEntry implements IToDoEntry_t<string> {
         this.value = value;
     }
 
-    public toString(): string {
-        return this.value;
+    htmlRepresentation(): string {
+        return `<h1>${this.value}</h1>`;
     }
 }

@@ -1,10 +1,8 @@
 <div *ngIf="entry">
-    <h1>{{this.entry?.title}}</h1>
+    <h1>{{this.entry.title}}</h1>
 
     <u><h2>Content</h2></u>
-    <div *ngFor="let listEntry of this.entry?.entries">
-        <h2>
-           {{listEntry}}
-        </h2>
+    <div *ngFor="let listEntry of this.entry.entries">
+        <span [innerHTML]="listEntry.htmlRepresentation()"></span>
     </div>
 </div>
