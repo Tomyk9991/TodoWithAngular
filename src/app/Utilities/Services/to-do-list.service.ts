@@ -4,6 +4,7 @@ import StringEntry from "../../../Model/ToDoList/StringEntry";
 import Sleep from "../Sleep";
 import BackendMockToDoList from "./BackendMockToDoList";
 import Hash from "../Hash";
+import ImageEntry from "../../../Model/ToDoList/ImageEntry";
 
 @Injectable({
     providedIn: 'root'
@@ -45,7 +46,16 @@ export class ToDoListService {
 
 
         let list: ToDoList = new ToDoList(title, hash);
+
         list.addItem(new StringEntry(content !== "" ? content : str));
+
+        for (let i = 0; i < Math.random() * 5; i++) {
+            if (Math.random() < 0.5) {
+                list.addItem(new ImageEntry("https://source.unsplash.com/random/400x400?sig=1\""));
+            } else {
+                list.addItem(new StringEntry(String(i)));
+            }
+        }
 
         return list;
     }
