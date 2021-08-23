@@ -1,5 +1,7 @@
-<div routerLink="/list/{{this.entry?.hash}}" [ngClass]="{ 'first' : first, 'last': last }" class="entry">
+<div [ngClass]="{ 'first' : first, 'last': last }" class="entry">
     <div class="checkBox" (click)="this.checkBoxClicked(!this.entry?.checked)"
          [ngClass]="entry?.checked ? 'checkBox checked' : 'checkBox unchecked'"></div>
-    <h2>{{this.entry?.title}}</h2>
+    <div class="entireWidth" routerLink="/list/{{this.entry?.hash}}" (click)="this.previewClicked()">
+        <h2>{{this.entry?.title}}</h2>
+    </div>
 </div>

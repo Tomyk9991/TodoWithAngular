@@ -9,6 +9,7 @@ import ToDoList from "../../Model/ToDoList/ToDoList";
     styleUrls: ['./list-entry.component.css']
 })
 export class ListEntryComponent implements OnInit {
+    public static SelectedEntry: ToDoList;
     @Input() public entry?: ToDoList;
 
     private route: ActivatedRoute;
@@ -17,6 +18,7 @@ export class ListEntryComponent implements OnInit {
     constructor(route: ActivatedRoute, listService: ToDoListService) {
         this.route = route;
         this.listService = listService;
+        this.entry = ListEntryComponent.SelectedEntry;
     }
 
     async ngOnInit(): Promise<void> {
