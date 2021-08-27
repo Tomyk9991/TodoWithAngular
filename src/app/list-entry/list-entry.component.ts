@@ -3,14 +3,14 @@ import {ActivatedRoute} from "@angular/router";
 import {ToDoListService} from "../Utilities/Services/to-do-list.service";
 import ToDoList from "../../Model/ToDoList/ToDoList";
 
+//List entry is somewhat an entry point. its not referenced by another component
 @Component({
     selector: 'app-list-entry',
     templateUrl: './list-entry.component.html',
     styleUrls: ['./list-entry.component.css']
 })
 export class ListEntryComponent implements OnInit {
-    public static SelectedEntry: ToDoList;
-    @Input() public entry?: ToDoList;
+    public entry?: ToDoList;
 
     private route: ActivatedRoute;
     private listService: ToDoListService;
@@ -18,11 +18,10 @@ export class ListEntryComponent implements OnInit {
     constructor(route: ActivatedRoute, listService: ToDoListService) {
         this.route = route;
         this.listService = listService;
-        this.entry = ListEntryComponent.SelectedEntry;
     }
 
     async ngOnInit(): Promise<void> {
         const hash: number = Number(this.route.snapshot.paramMap.get('id'));
-        await this.listService.getList(hash);
+        this.entry = await this.listService.getList(hash);
     }
 }

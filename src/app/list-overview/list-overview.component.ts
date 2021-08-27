@@ -15,6 +15,6 @@ export class ListOverviewComponent implements OnInit {
     }
 
     async ngOnInit(): Promise<any> {
-        this.lists = await this.listService.getLists(this.amount);
+        this.lists = await this.listService.getRecentLists(this.amount);
     }
 }

@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import ToDoList from "../../Model/ToDoList/ToDoList";
-import {ListEntryComponent} from "../list-entry/list-entry.component";
 
 @Component({
     selector: 'app-list-entry-preview',
@@ -21,15 +20,9 @@ export class ListEntryPreviewComponent implements OnInit {
     }
 
     // callback from html
-    public previewClicked(): void {
-        if (this.entry)
-            ListEntryComponent.SelectedEntry = this.entry;
-    }
-
-    // callback from html
     public checkBoxClicked(state: boolean): void {
         if (this.entry != undefined) {
-            this.entry.checked = state;
+            this.entry.isComplete = state;
         }
     }
 }
