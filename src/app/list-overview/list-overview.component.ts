@@ -8,7 +8,7 @@ import {ToDoListService} from "../Utilities/Services/to-do-list.service";
     styleUrls: ['./list-overview.component.css']
 })
 export class ListOverviewComponent implements OnInit {
-    @Input() public amount: number = 15;
+    @Input() public amount: number = -1; //For effect, change in home.component.html
     public lists: ToDoList[] = [];
 
     constructor(private listService: ToDoListService) {

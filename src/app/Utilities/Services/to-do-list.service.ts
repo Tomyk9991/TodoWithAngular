@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import TodoListCache from "./TodoListCache";
 import BackendCommunication from "../../../Model/Backend-Communication/BackendCommunication";
-import StringEntry from "../../../Model/ToDoList/StringEntry";
 import ToDoListDTO from "../../../Model/ToDoList/ToDoListDTO";
 import ToDoList from "../../../Model/ToDoList/ToDoList";
 
@@ -23,17 +22,24 @@ export class ToDoListService {
     }
 
     public async getRecentLists(amount: number): Promise<ToDoList[]> {
-        let parsedObj: ToDoListDTO = await BackendCommunication.PUT(
-            new ToDoListDTO("Walk dog", true, [
-                new StringEntry("Say good morning").toDTO(),
-                new StringEntry("Give him some food").toDTO()
-            ]
-        ));
+        //Check cache first
+        let responseDTOs: ToDoListDTO[] = TodoListCache.get_recent(amount);
 
-        TodoListCache.add(parsedObj);
-        let test: ToDoList = parsedObj.toToDoListObject();
+        //TODO: Still send data to the backend and ask, if there's newer data
 
-        return [test];
+        if (responseDTOs.length === 0) {
+            console.log("No session data found. Fetch from backend");
+            responseDTOs = await BackendCommunication.GET_RECENT(amount);
+            TodoListCache.add_recent(responseDTOs); //Newer data, must be stored in session storage
+        }
+
+        let recentLists: ToDoList[] = [];
+        for (let i = 0; i < responseDTOs.length; i++) {
+            TodoListCache.add(responseDTOs[i]);
+            recentLists.push(responseDTOs[i].toToDoListObject());
+        }
+
+        return recentLists;
     }
 }
 
