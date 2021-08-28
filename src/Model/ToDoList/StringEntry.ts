@@ -10,7 +10,7 @@ export default class StringEntry implements IToDoEntry_t<string> {
     }
 
     htmlRepresentation(): string {
-        return `<h1>${this.value}</h1>`;
+        return String(Number(ToDoEntryType.Str));
     }
 
     public toDTO(): ToDoEntryDTO {

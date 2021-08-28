@@ -9,6 +9,7 @@ import {ListOverviewComponent} from './list-overview/list-overview.component';
 import {SettingsComponent} from './settings/settings.component';
 import { ListEntryPreviewComponent } from './list-entry-preview/list-entry-preview.component';
 import { ListEntryComponent } from './list-entry/list-entry.component';
+import { StringViewComponent } from './list-entry/string-view/string-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ListEntryComponent } from './list-entry/list-entry.component';
     ListOverviewComponent,
     SettingsComponent,
     ListEntryPreviewComponent,
-    ListEntryComponent
+    ListEntryComponent,
+    StringViewComponent
   ],
   imports: [
     BrowserModule,

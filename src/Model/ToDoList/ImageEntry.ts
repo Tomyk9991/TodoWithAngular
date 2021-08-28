@@ -10,7 +10,7 @@ export default class ImageEntry implements IToDoEntry_t<string> {
     }
 
     htmlRepresentation(): string {
-        return `<img src="${this.value}" width="15%"/>`;
+        return String(Number(ToDoEntryType.Img));
     }
 
     public toDTO(): ToDoEntryDTO {

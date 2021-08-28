@@ -2,7 +2,10 @@
     <h1>Title: {{this.entry.title}}</h1>
 
     <u><h2>Content</h2></u>
+
     <div *ngFor="let listEntry of this.entry.entries">
-        <span [innerHTML]="listEntry.htmlRepresentation()"></span>
+        <div [ngSwitch]="listEntry.htmlRepresentation()">
+            <app-string-view [entry]="listEntry" [ngSwitch]="1"></app-string-view>
+        </div>
     </div>
 </div>
