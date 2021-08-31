@@ -24,7 +24,6 @@ export default class ToDoList {
         Object.assign(temp, json);
 
         //Nested objects
-
         for (let i = 0; i < temp.entries.length; i++) {
             console.log(temp.entries[i]);
             let e: any | undefined;
@@ -41,30 +40,9 @@ export default class ToDoList {
                     break;
             }
 
-            // let e: IToDoEntry = {
-            //     htmlRepresentation(): string {
-            //         return "kek";
-            //     }, toDTO(): ToDoEntryDTO {
-            //         return new ToDoEntryDTO("roflmau", ToDoEntryType.None);
-            //     }
-            //
-            // };
             Object.assign(e, temp.entries[i]);
-
             temp.entries[i] = e;
         }
-
-        // temp.entries.map((entry) => {
-        //     let e: IToDoEntry = {
-        //         htmlRepresentation(): string {
-        //             return "kek";
-        //         }, toDTO(): ToDoEntryDTO {
-        //             return new ToDoEntryDTO("roflmau", ToDoEntryType.None);
-        //         }
-        //
-        //     };
-        //     Object.assign(e, entry);
-        // })
 
         return temp;
     }

@@ -4,7 +4,6 @@ import {ToDoEntryType} from "./ToDoEntryType";
 
 export default class ToDoListDTO {
     public static NotFound: ToDoListDTO = new ToDoListDTO("Not Found TodoListDTO", false, []);
-    public id: number = 0;
     public title: string = "";
     public isComplete: boolean = true;
     public hash: number = -1;
