@@ -10,6 +10,8 @@ import {SettingsComponent} from './settings/settings.component';
 import { ListEntryPreviewComponent } from './list-entry-preview/list-entry-preview.component';
 import { ListEntryComponent } from './list-entry/list-entry.component';
 import { StringViewComponent } from './list-entry/string-view/string-view.component';
+import { ImageViewComponent } from './list-entry/image-view/image-view.component';
+import { EntryContainerComponent } from './list-entry/entry-container/entry-container.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { StringViewComponent } from './list-entry/string-view/string-view.compon
     SettingsComponent,
     ListEntryPreviewComponent,
     ListEntryComponent,
-    StringViewComponent
+    StringViewComponent,
+    ImageViewComponent,
+    EntryContainerComponent
   ],
   imports: [
     BrowserModule,

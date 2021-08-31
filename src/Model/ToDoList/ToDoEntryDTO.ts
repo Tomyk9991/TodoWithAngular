@@ -18,10 +18,8 @@ export default class ToDoEntryDTO {
                 break;
             case ToDoEntryType.Str:
                 return new StringEntry(this.value)
-                break;
             case ToDoEntryType.Img:
                 return new ImageEntry(this.value)
-                break;
         }
 
         return {

@@ -7,7 +7,6 @@ import IToDoEntry, {IToDoEntry_t} from "../../../Model/ToDoList/ToDoEntry";
     styleUrls: ['./string-view.component.css']
 })
 export class StringViewComponent implements OnInit {
-
     @Input() entry?: IToDoEntry;
     public castedEntry?: IToDoEntry_t<string>;
 
