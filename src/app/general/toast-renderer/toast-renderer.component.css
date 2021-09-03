@@ -1,0 +1,35 @@
+.center-bottom-inactive {
+    position: fixed;
+    background-color: var(--main-grey);
+    width: 300px;
+    height: 50px;
+    bottom: -50px;
+    border-radius: 20px;
+    left: calc(50% - (300px / 2));
+
+
+    line-height: 50px;
+    color: white;
+    text-align: center;
+
+    /*Animations*/
+    transition: bottom 100ms;
+}
+
+.center-bottom-active {
+    position: fixed;
+    background-color: var(--main-grey);
+    width: 300px;
+    height: 50px;
+    bottom: 5px;
+    border-radius: 20px;
+    left: calc(50% - (300px / 2));
+
+
+    line-height: 50px;
+    color: white;
+    text-align: center;
+
+    /*Animations*/
+    transition: bottom 100ms;
+}

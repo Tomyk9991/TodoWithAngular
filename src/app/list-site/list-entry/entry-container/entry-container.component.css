@@ -1,0 +1,28 @@
+.container {
+    background-color: var(--main-grey);
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+    border-radius: 15px;
+    text-align: center;
+
+    /*Animations*/
+    transition: background-color 100ms;
+}
+
+.container:hover {
+    background-color: var(--main-grey-2);
+
+    /*Animations*/
+    transition: background-color 100ms;
+}
+
+.cancel {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.cancel:hover {
+    opacity: .8;
+}

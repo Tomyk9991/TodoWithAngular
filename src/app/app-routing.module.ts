@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "./home/home.component";
-import {ListOverviewComponent} from "./list-overview/list-overview.component";
+import {HomeComponent} from "./home-site/home/home.component";
+import {ListOverviewComponent} from "./list-site/list-overview/list-overview.component";
 import {SettingsComponent} from "./settings/settings.component";
-import {ListEntryComponent} from "./list-entry/list-entry.component";
+import {ListEntryComponent} from "./list-site/list-entry/list-entry.component";
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},

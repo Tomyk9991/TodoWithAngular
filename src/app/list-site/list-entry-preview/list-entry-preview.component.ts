@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import ToDoList from "../../Model/ToDoList/ToDoList";
+import ToDoList from "../../../Model/ToDoList/ToDoList";
 
 @Component({
     selector: 'app-list-entry-preview',

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LocaleService} from "../Utilities/Services/locale.service";
+import {LocaleService} from "../../Utilities/Services/locale.service";
 import {Event, NavigationEnd, Router} from "@angular/router";
 
 @Component({

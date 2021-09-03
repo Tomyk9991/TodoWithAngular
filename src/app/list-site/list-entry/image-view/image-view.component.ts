@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import IToDoEntry, {IToDoEntry_t} from "../../../Model/ToDoList/ToDoEntry";
+import IToDoEntry, {IToDoEntry_t} from "../../../../Model/ToDoList/ToDoEntry";
 
 @Component({
     selector: 'app-image-view',

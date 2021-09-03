@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {ToDoListService} from "../Utilities/Services/to-do-list.service";
-import ToDoList from "../../Model/ToDoList/ToDoList";
+import {ToDoListService} from "../../Utilities/Services/to-do-list.service";
+import ToDoList from "../../../Model/ToDoList/ToDoList";
 
 //List entry is somewhat an entry point. its not referenced by another component
 @Component({

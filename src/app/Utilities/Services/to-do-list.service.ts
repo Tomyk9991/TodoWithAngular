@@ -21,6 +21,10 @@ export class ToDoListService {
         return ToDoList.NotFound;
     }
 
+    // public async updateToDoList(hash: number, updatedObject: ToDoList): Promise<ToDoList> {
+    //     await BackendCommunication.UPDATE(hash, updatedObject);
+    // }
+
     public async getRecentLists(amount: number): Promise<ToDoList[]> {
         //Check cache first
         let responseDTOs: ToDoListDTO[] = TodoListCache.get_recent(amount);

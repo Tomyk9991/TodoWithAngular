@@ -1,8 +1,13 @@
 import ToDoListDTO from "../ToDoList/ToDoListDTO";
+import ToDoList from "../ToDoList/ToDoList";
 
 export default class BackendCommunication {
     private static get uri(): string { return "/api/TodoItems" };
     private static get recent_extension(): string { return "/recent/" };
+
+    public static async UPDATE(hash: number, targetObject: ToDoList): Promise<void> {
+
+    }
 
     public static async GET_RECENT(amount: number): Promise<ToDoListDTO[]> {
         let request: RequestInit = {
