@@ -1,20 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Injectable, Input, OnInit} from '@angular/core';
 import IToDoEntry, {IToDoEntry_t} from "../../../../Model/ToDoList/ToDoEntry";
 import ToasterService from "../../../Utilities/Services/toaster.service";
 import ToDoList from "../../../../Model/ToDoList/ToDoList";
+import IRepository from "../../../Utilities/Services/Repositories/IRepository";
+import RepositoryEntryUpdater from "../../../Utilities/Services/Repositories/RepositoryEntryUpdater";
 
 @Component({
     selector: 'app-entry-container',
     templateUrl: './entry-container.component.html',
     styleUrls: ['./entry-container.component.css']
 })
+@Injectable()
 export class EntryContainerComponent implements OnInit {
     @Input() entry?: IToDoEntry;
     @Input() todoList?: ToDoList;
 
+    private readonly updateEntryRepo: IRepository<string, void>;
     public castedEntry?: IToDoEntry_t<string>;
 
     constructor(private toaster: ToasterService) {
+        this.updateEntryRepo = new RepositoryEntryUpdater<string>();
     }
 
     ngOnInit(): void {
@@ -23,6 +28,8 @@ export class EntryContainerComponent implements OnInit {
 
     //Callback from html
     public async deleteEntry(): Promise<void> {
-        this.toaster.log(<string>this.castedEntry?.value, 1500);
+        if(this.todoList !== undefined && this.castedEntry !== undefined) {
+            await this.updateEntryRepo.action(this.todoList, this.castedEntry);
+        }
     }
 }

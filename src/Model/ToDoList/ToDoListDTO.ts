@@ -3,16 +3,17 @@ import ToDoEntryDTO from "./ToDoEntryDTO";
 import {ToDoEntryType} from "./ToDoEntryType";
 
 export default class ToDoListDTO {
-    public static NotFound: ToDoListDTO = new ToDoListDTO("Not Found TodoListDTO", false, []);
+    public static NotFound: ToDoListDTO = new ToDoListDTO("Not Found TodoListDTO", false,-1, []);
     public title: string = "";
     public isComplete: boolean = true;
     public hash: number = -1;
     public entries: ToDoEntryDTO[] = [];
 
-    constructor(title: string, isComplete: boolean, entries: ToDoEntryDTO[]) {
+    constructor(title: string, isComplete: boolean, hash: number, entries: ToDoEntryDTO[]) {
         this.title = title;
         this.isComplete = isComplete;
         this.entries = entries;
+        this.hash = hash;
     }
 
     public toToDoListObject(): ToDoList {
@@ -28,7 +29,7 @@ export default class ToDoListDTO {
 
     public static fromJson(json: string): ToDoListDTO { // JSON parse with casting doesnt work for typescript objects :(
         // Object itself
-        let temp: ToDoListDTO = new ToDoListDTO("", false, []);
+        let temp: ToDoListDTO = new ToDoListDTO("", false, -1,[]);
         Object.assign(temp, json);
 
         //Nested objects

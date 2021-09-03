@@ -5,7 +5,7 @@
 
     <div *ngFor="let listEntry of this.entry.entries">
         <div [ngSwitch]="listEntry.htmlRepresentation()">
-            <app-entry-container [entry]="listEntry">
+            <app-entry-container [entry]="listEntry" [todoList]="entry">
                 <app-string-view [entry]="listEntry" *ngSwitchCase="'1'"></app-string-view>
                 <app-image-view [entry]="listEntry" *ngSwitchCase="'2'"></app-image-view>
             </app-entry-container>

@@ -13,6 +13,7 @@ import { StringViewComponent } from './list-site/list-entry/string-view/string-v
 import { ImageViewComponent } from './list-site/list-entry/image-view/image-view.component';
 import { EntryContainerComponent } from './list-site/list-entry/entry-container/entry-container.component';
 import { ToastRendererComponent } from './general/toast-renderer/toast-renderer.component';
+import { MyListsComponent } from './list-site/my-lists/my-lists.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ToastRendererComponent } from './general/toast-renderer/toast-renderer.
     StringViewComponent,
     ImageViewComponent,
     EntryContainerComponent,
-    ToastRendererComponent
+    ToastRendererComponent,
+    MyListsComponent
   ],
   imports: [
     BrowserModule,

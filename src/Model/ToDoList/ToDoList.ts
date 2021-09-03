@@ -3,6 +3,7 @@ import ToDoEntryDTO from "./ToDoEntryDTO";
 import {ToDoEntryType} from "./ToDoEntryType";
 import StringEntry from "./StringEntry";
 import ImageEntry from "./ImageEntry";
+import ToDoListDTO from "./ToDoListDTO";
 
 export default class ToDoList {
     public static NotFound: ToDoList = new ToDoList("<<TodoList.ts::NotFound>>", false, -1, []);
@@ -45,5 +46,10 @@ export default class ToDoList {
         }
 
         return temp;
+    }
+
+    public toDTO(): ToDoListDTO {
+        return new ToDoListDTO(this.title, this.isComplete, this.hash,
+            this.entries.map(e => e.toDTO()));
     }
 }

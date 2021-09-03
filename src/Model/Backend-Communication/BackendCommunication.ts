@@ -5,8 +5,30 @@ export default class BackendCommunication {
     private static get uri(): string { return "/api/TodoItems" };
     private static get recent_extension(): string { return "/recent/" };
 
-    public static async UPDATE(hash: number, targetObject: ToDoList): Promise<void> {
+    private static get headersObject(): any {
+        return {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+    }
 
+    public static async UPDATE(hash: number, targetObject: ToDoListDTO): Promise<void> {
+        let request: RequestInit = {
+            method: 'PUT',
+            headers: this.headersObject,
+            body: JSON.stringify(targetObject)
+        };
+
+        console.log(hash);
+        console.log(targetObject);
+
+        let fullUri: string = BackendCommunication.uri + "/" + String(hash);
+
+        let response: Response = await fetch(fullUri, request);
+
+        if(!response.ok) {
+            throw new Error("BackendCommunication failed while updating");
+        }
     }
 
     public static async GET_RECENT(amount: number): Promise<ToDoListDTO[]> {
@@ -15,7 +37,7 @@ export default class BackendCommunication {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
         };
 
         let fullUri: string = "";
@@ -59,6 +81,6 @@ export default class BackendCommunication {
             return parsedObj;
         }
 
-        return new ToDoListDTO("<<Not found.BackendCommunication.ts>>", true, []);
+        return new ToDoListDTO("<<Not found.BackendCommunication.ts>>", true,-1, []);
     }
 }

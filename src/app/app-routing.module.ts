@@ -4,11 +4,12 @@ import {HomeComponent} from "./home-site/home/home.component";
 import {ListOverviewComponent} from "./list-site/list-overview/list-overview.component";
 import {SettingsComponent} from "./settings/settings.component";
 import {ListEntryComponent} from "./list-site/list-entry/list-entry.component";
+import {MyListsComponent} from "./list-site/my-lists/my-lists.component";
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
-    { path: 'mylists', component: ListOverviewComponent },
+    { path: 'mylists', component: MyListsComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'list/:id', component: ListEntryComponent }
 ];

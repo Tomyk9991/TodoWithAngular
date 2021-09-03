@@ -4,9 +4,12 @@ import {Injectable} from '@angular/core';
     providedIn: 'root'
 })
 export default class ToasterService {
+    private static _instance?: ToasterService = undefined;
+    public static get Instance(): ToasterService | undefined { return ToasterService._instance; }
     public onLogAdded?: (settings: ToasterSettings) => void;
 
     constructor() {
+        ToasterService._instance = this;
     }
 
     public log(str: string, duration: number = 1500): void {
