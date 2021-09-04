@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ToDoListService} from "../../Utilities/Services/to-do-list.service";
 import ToDoList from "../../../Model/ToDoList/ToDoList";

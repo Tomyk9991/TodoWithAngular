@@ -34,10 +34,7 @@ export default class BackendCommunication {
     public static async GET_RECENT(amount: number): Promise<ToDoListDTO[]> {
         let request: RequestInit = {
             method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers: this.headersObject
         };
 
         let fullUri: string = "";
@@ -63,14 +60,28 @@ export default class BackendCommunication {
         return [];
     }
 
+    public static async GET(hash: number): Promise<ToDoListDTO> {
+        let request: RequestInit = {
+            method: 'GET',
+            headers: this.headersObject
+        };
+
+        let fullUri: string = BackendCommunication.uri + "/" + String(hash);
+        let response: Response = await fetch(fullUri, request);
+
+        if (response.ok) {
+            let parsedObj: ToDoListDTO = ToDoListDTO.fromJson(JSON.parse(await response.text()));
+            return parsedObj;
+        }
+
+        return new ToDoListDTO("<<Not found.BackendCommunication.ts>>", true,-1, []);
+    }
+
 
     public static async CREATE(todoItem: ToDoListDTO): Promise<ToDoListDTO> {
         let request: RequestInit = {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers: this.headersObject,
             body: JSON.stringify(todoItem)
         };
 

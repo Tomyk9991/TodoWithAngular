@@ -4,6 +4,7 @@ import ToasterService from "../../../Utilities/Services/toaster.service";
 import ToDoList from "../../../../Model/ToDoList/ToDoList";
 import IRepository from "../../../Utilities/Services/Repositories/IRepository";
 import RepositoryEntryUpdater from "../../../Utilities/Services/Repositories/RepositoryEntryUpdater";
+import {ToDoListService} from "../../../Utilities/Services/to-do-list.service";
 
 @Component({
     selector: 'app-entry-container',
@@ -15,10 +16,10 @@ export class EntryContainerComponent implements OnInit {
     @Input() entry?: IToDoEntry;
     @Input() todoList?: ToDoList;
 
-    private readonly updateEntryRepo: IRepository<string, void>;
+    private readonly updateEntryRepo: IRepository<string, ToDoList>;
     public castedEntry?: IToDoEntry_t<string>;
 
-    constructor(private toaster: ToasterService) {
+    constructor(private todoListService: ToDoListService) {
         this.updateEntryRepo = new RepositoryEntryUpdater<string>();
     }
 
@@ -29,7 +30,9 @@ export class EntryContainerComponent implements OnInit {
     //Callback from html
     public async deleteEntry(): Promise<void> {
         if(this.todoList !== undefined && this.castedEntry !== undefined) {
-            await this.updateEntryRepo.action(this.todoList, this.castedEntry);
+            let l: ToDoList = this.updateEntryRepo.action(this.todoList, this.castedEntry);
+
+            await this.todoListService.updateToDoList(l.hash, l);
         }
     }
 }

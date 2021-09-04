@@ -12,34 +12,23 @@ export class ToDoListService {
     }
 
     public async getList(hash: number): Promise<ToDoList> {
-        if (TodoListCache.contains(hash)) { //Check cache first
-            return TodoListCache.get(hash).toToDoListObject();
+        if (TodoListCache.SingleEntry_WA.contains(hash)) { //Check cache first
+            return TodoListCache.SingleEntry_WA.pop(hash).toToDoListObject();
         }
 
-        console.log("Didn't found item: todolist.service.ts");
-
-        return ToDoList.NotFound;
+        return (await BackendCommunication.GET(hash)).toToDoListObject();
     }
 
-    // public async updateToDoList(hash: number, updatedObject: ToDoList): Promise<ToDoList> {
-    //     await BackendCommunication.UPDATE(hash, updatedObject);
-    // }
+    public async updateToDoList(hash: number, updatedObject: ToDoList): Promise<void> {
+        await BackendCommunication.UPDATE(hash, updatedObject.toDTO());
+    }
 
     public async getRecentLists(amount: number): Promise<ToDoList[]> {
-        //Check cache first
-        let responseDTOs: ToDoListDTO[] = TodoListCache.get_recent(amount);
-
-        //TODO: Still send data to the backend and ask, if there's newer data
-
-        if (responseDTOs.length === 0) {
-            console.log("No session data found. Fetch from backend");
-            responseDTOs = await BackendCommunication.GET_RECENT(amount);
-            TodoListCache.add_recent(responseDTOs); //Newer data, must be stored in session storage
-        }
+        let responseDTOs: ToDoListDTO[] = await BackendCommunication.GET_RECENT(amount);
 
         let recentLists: ToDoList[] = [];
         for (let i = 0; i < responseDTOs.length; i++) {
-            TodoListCache.add(responseDTOs[i]);
+            TodoListCache.SingleEntry_WA.push(responseDTOs[i].hash, responseDTOs[i]);
             recentLists.push(responseDTOs[i].toToDoListObject());
         }
 
