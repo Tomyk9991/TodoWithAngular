@@ -6,6 +6,16 @@
     background-color: var(--main-grey);
 }
 
+.cancel {
+    position: relative;
+    top: 5px;
+    right: 5px;
+}
+
+.cancel:hover {
+    opacity: .8;
+}
+
 .entireWidth {
     width: 100%;
 }

@@ -14,6 +14,7 @@ import { ImageViewComponent } from './list-site/list-entry/image-view/image-view
 import { EntryContainerComponent } from './list-site/list-entry/entry-container/entry-container.component';
 import { ToastRendererComponent } from './general/toast-renderer/toast-renderer.component';
 import { MyListsComponent } from './list-site/my-lists/my-lists.component';
+import { MessageboxRendererComponent } from './general/messagebox-renderer/messagebox-renderer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MyListsComponent } from './list-site/my-lists/my-lists.component';
     ImageViewComponent,
     EntryContainerComponent,
     ToastRendererComponent,
-    MyListsComponent
+    MyListsComponent,
+    MessageboxRendererComponent
   ],
   imports: [
     BrowserModule,

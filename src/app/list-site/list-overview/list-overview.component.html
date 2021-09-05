@@ -2,7 +2,7 @@
     <div *ngFor="let listEntry of lists; index as i">
         <app-list-entry-preview [first]="i === 0"
                                 [last]="i === lists.length - 1"
-                                [entry]="listEntry">
+                                [todoList]="listEntry">
         </app-list-entry-preview>
     </div>
 </div>

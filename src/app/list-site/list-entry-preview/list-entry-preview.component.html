@@ -1,9 +1,12 @@
 <div [ngClass]="{ 'first' : first, 'last': last }" class="entry">
 
-    <div class="checkBox" (click)="this.checkBoxClicked(!this.entry?.isComplete)"
-         [ngClass]="entry?.isComplete ? 'checkBox checked' : 'checkBox unchecked'"></div>
-    <div class="entireWidth" routerLink="/list/{{this.entry?.hash}}">
-        <h2>{{this.entry?.title}}</h2>
+    <div class="checkBox" (click)="this.checkBoxClicked(!this.todoList?.isComplete)"
+         [ngClass]="todoList?.isComplete ? 'checkBox checked' : 'checkBox unchecked'">
     </div>
-
+    <div class="entireWidth" routerLink="/list/{{this.todoList?.hash}}">
+        <h2>{{this.todoList?.title}}</h2>
+    </div>
+    <div>
+        <img alt="Not found :(" src="assets/Cancel.png" class="cancel" width="30"/>
+    </div>
 </div>

@@ -1,5 +1,4 @@
 import ToDoListDTO from "../ToDoList/ToDoListDTO";
-import ToDoList from "../ToDoList/ToDoList";
 
 export default class BackendCommunication {
     private static get uri(): string { return "/api/TodoItems" };
