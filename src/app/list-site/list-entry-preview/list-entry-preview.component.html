@@ -7,6 +7,6 @@
         <h2>{{this.todoList?.title}}</h2>
     </div>
     <div>
-        <img alt="Not found :(" src="assets/Cancel.png" class="cancel" width="30"/>
+        <img (click)="this.deleteEntryPrompt()" alt="Not found :(" src="assets/Cancel.png" class="cancel" width="30"/>
     </div>
 </div>

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import ToDoList from "../../../Model/ToDoList/ToDoList";
-import {ToDoListService} from "../../Utilities/Services/to-do-list.service";
+import {ToDoListService} from "../../Utilities/Services/Todo service/to-do-list.service";
 
 @Component({
     selector: 'app-list-overview',

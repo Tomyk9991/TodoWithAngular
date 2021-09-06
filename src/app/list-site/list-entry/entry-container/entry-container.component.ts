@@ -1,10 +1,10 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
 import IToDoEntry, {IToDoEntry_t} from "../../../../Model/ToDoList/ToDoEntry";
-import ToasterService from "../../../Utilities/Services/toaster.service";
+import ToasterService from "../../../Utilities/Services/Todo service/toaster.service";
 import ToDoList from "../../../../Model/ToDoList/ToDoList";
 import IRepository from "../../../Utilities/Services/Repositories/IRepository";
 import RepositoryEntryUpdater from "../../../Utilities/Services/Repositories/RepositoryEntryUpdater";
-import {ToDoListService} from "../../../Utilities/Services/to-do-list.service";
+import {ToDoListService} from "../../../Utilities/Services/Todo service/to-do-list.service";
 
 @Component({
     selector: 'app-entry-container',

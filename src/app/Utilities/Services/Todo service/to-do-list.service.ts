@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import TodoListCache from "./TodoListCache";
-import BackendCommunication from "../../../Model/Backend-Communication/BackendCommunication";
-import ToDoListDTO from "../../../Model/ToDoList/ToDoListDTO";
-import ToDoList from "../../../Model/ToDoList/ToDoList";
+import TodoListCache from "../TodoListCache";
+import BackendCommunication from "../../../../Model/Backend-Communication/BackendCommunication";
+import ToDoListDTO from "../../../../Model/ToDoList/ToDoListDTO";
+import ToDoList from "../../../../Model/ToDoList/ToDoList";
 
 @Injectable({
     providedIn: 'root'

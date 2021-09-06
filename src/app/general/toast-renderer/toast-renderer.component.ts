@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import ToasterService, {ToasterSettings} from "../../Utilities/Services/toaster.service";
+import ToasterService, {ToasterSettings} from "../../Utilities/Services/Todo service/toaster.service";
 
 @Component({
     selector: 'app-toast-renderer',
