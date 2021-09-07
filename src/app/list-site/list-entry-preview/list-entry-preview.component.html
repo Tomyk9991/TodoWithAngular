@@ -3,10 +3,17 @@
     <div class="checkBox" (click)="this.checkBoxClicked(!this.todoList?.isComplete)"
          [ngClass]="todoList?.isComplete ? 'checkBox checked' : 'checkBox unchecked'">
     </div>
-    <div class="entireWidth" routerLink="/list/{{this.todoList?.hash}}">
-        <h2>{{this.todoList?.title}}</h2>
+    <div class="entireWidth" (click)="this.onClick()" (dblclick)="this.onDoubleClick()" >
+        <h2 *ngIf="!this.isEditMode">{{this.todoList?.title}}</h2>
+        <input #inputElement *ngIf="this.isEditMode"
+               (focusout)="this.lostFocus()"
+               (keyup.enter)="submit(inputElement)"
+               (keyup.escape)="this.lostFocus()"
+               type="text" placeholder="{{this.todoList?.title}}">
     </div>
+
     <div>
         <img (click)="this.deleteEntryPrompt()" alt="Not found :(" src="assets/Cancel.png" class="cancel" width="30"/>
     </div>
+
 </div>

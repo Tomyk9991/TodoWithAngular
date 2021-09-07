@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
 import ToDoList from "../../../Model/ToDoList/ToDoList";
 import {ToDoListService} from "../../Utilities/Services/Todo service/to-do-list.service";
 import {MessageBoxService} from "../../Utilities/Services/Message box service/message-box.service";
 import IMessageBoxContent from "../../Utilities/Services/Message box service/IMessageBoxContent";
 import {HeaderMessageContent} from "../../Utilities/Services/Message box service/HeaderMessageContent";
-import TextMessageContent from "../../Utilities/Services/Message box service/TextMessageContent";
 import HyperLinkMessageContent from "../../Utilities/Services/Message box service/HyperLinkMessageContent";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-list-entry-preview',
@@ -15,9 +15,17 @@ import HyperLinkMessageContent from "../../Utilities/Services/Message box servic
 export class ListEntryPreviewComponent implements OnInit {
     @Input() public first: boolean = false;
     @Input() public last: boolean = false;
-
     @Input() public todoList: ToDoList | undefined;
-    constructor(private todoListService: ToDoListService, private messageBoxService: MessageBoxService) {
+
+    @ViewChildren("inputElement") private inputElement?: QueryList<any>;
+    public isEditMode: boolean = false;
+
+    private timer: any;
+    private preventSimpleClick: boolean = false;
+
+    constructor(private todoListService: ToDoListService,
+                private messageBoxService: MessageBoxService,
+                private router: Router) {
 
     }
 
@@ -25,10 +33,75 @@ export class ListEntryPreviewComponent implements OnInit {
 
     }
 
+    // Gets called, when a change in "todoList" is made.
+    private async onChangeDetected(): Promise<void> {
+        if (this.todoList !== undefined) {
+            await this.todoListService.updateToDoList(this.todoList?.hash, this.todoList);
+        }
+    }
+
     // callback from html
-    public checkBoxClicked(state: boolean): void {
+    public onClick(): void {
+        this.timer = 0;
+        this.preventSimpleClick = false;
+        let delay: number = 200;
+
+        this.timer = setTimeout(() => {
+            if (!this.preventSimpleClick && !this.isEditMode) {
+                this.router.navigate([`/list/${this.todoList?.hash}`])
+            }
+        }, delay);
+    }
+
+    // callback from html
+    public async submit(inputElement: HTMLInputElement): Promise<void> {
+        let title: string = inputElement.value;
+        let titleWithoutSpaces: string = title.replace(/\s/g, "");
+
+        if (titleWithoutSpaces === "") { // true, if only spaces are submitted
+            return;
+        }
+
+        console.log(inputElement.value);
+
+        this.lostFocus();
+
+        if (this.todoList !== undefined) {
+            this.todoList.title = title;
+            await this.onChangeDetected();
+        }
+    }
+
+
+    // callback from html
+    public onDoubleClick(): void {
+        this.preventSimpleClick = true;
+        clearTimeout(this.timer);
+
+        this.isEditMode = true;
+        this.onFocus();
+    }
+
+    //callback from html
+    public onFocus(): void {
+        this.inputElement?.changes.subscribe((d: QueryList<any>) => {
+            if (d.length) {
+                d.first.nativeElement.focus();
+            }
+        });
+
+    }
+
+    // callback from html
+    public lostFocus(): void {
+        this.isEditMode = false;
+    }
+
+    // callback from html
+    public async checkBoxClicked(state: boolean): Promise<void> {
         if (this.todoList != undefined) {
             this.todoList.isComplete = state;
+            await this.onChangeDetected();
         }
     }
 
@@ -41,14 +114,14 @@ export class ListEntryPreviewComponent implements OnInit {
 
             this.messageBoxService.open(m1, m2, m3);
 
-            this.messageBoxService.onConfirm = () => {
-                console.log("CONFIRMED FROM LST ENTRY PREVIEW");
-            };
+            this.messageBoxService.onCancel = () => { };
 
-            this.messageBoxService.onCancel = () => {
-                console.log("CANCELED FROM LST ENTRY PREVIEW");
+            this.messageBoxService.onConfirm = async () => {
+                if (this.todoList !== undefined) {
+                    await this.todoListService.removeTodoList(this.todoList.hash);
+                    window.location.reload();
+                }
             };
-            // await this.todoListService.removeTodoList(this.todoList.hash);
         }
     }
 }

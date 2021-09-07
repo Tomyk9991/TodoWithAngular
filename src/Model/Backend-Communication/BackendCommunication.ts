@@ -1,5 +1,11 @@
 import ToDoListDTO from "../ToDoList/ToDoListDTO";
 
+enum HTTPMethods {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    DELETE = 'DELETE'
+}
 export default class BackendCommunication {
     private static get uri(): string { return "/api/TodoItems" };
     private static get recent_extension(): string { return "/recent/" };
@@ -13,7 +19,7 @@ export default class BackendCommunication {
 
     public static async UPDATE(hash: number, targetObject: ToDoListDTO): Promise<void> {
         let request: RequestInit = {
-            method: 'PUT',
+            method: HTTPMethods.PUT,
             headers: this.headersObject,
             body: JSON.stringify(targetObject)
         };
@@ -32,7 +38,7 @@ export default class BackendCommunication {
 
     public static async GET_RECENT(amount: number): Promise<ToDoListDTO[]> {
         let request: RequestInit = {
-            method: 'GET',
+            method: HTTPMethods.GET,
             headers: this.headersObject
         };
 
@@ -59,9 +65,23 @@ export default class BackendCommunication {
         return [];
     }
 
+    static async REMOVE(hash: number): Promise<void> {
+        let request: RequestInit = {
+            method: HTTPMethods.DELETE,
+            headers: this.headersObject
+        };
+
+        let fullUri: string = BackendCommunication.uri + "/" + String(hash);
+        let response: Response = await fetch(fullUri, request);
+
+        if (!response.ok) {
+            throw new Error("BackendCommunication failed while deleting");
+        }
+    }
+
     public static async GET(hash: number): Promise<ToDoListDTO> {
         let request: RequestInit = {
-            method: 'GET',
+            method: HTTPMethods.GET,
             headers: this.headersObject
         };
 
@@ -79,7 +99,7 @@ export default class BackendCommunication {
 
     public static async CREATE(todoItem: ToDoListDTO): Promise<ToDoListDTO> {
         let request: RequestInit = {
-            method: 'POST',
+            method: HTTPMethods.POST,
             headers: this.headersObject,
             body: JSON.stringify(todoItem)
         };

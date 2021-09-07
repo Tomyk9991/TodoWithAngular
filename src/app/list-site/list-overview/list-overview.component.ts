@@ -14,7 +14,16 @@ export class ListOverviewComponent implements OnInit {
     constructor(private listService: ToDoListService) {
     }
 
-    async ngOnInit(): Promise<any> {
+    public async onAddList(): Promise<void> {
+        let newObj: ToDoList = new ToDoList("New todo list...", false, -1, []);
+
+        let list: ToDoList = await this.listService.createNewTodoList("New todo list...");
+
+        this.lists.unshift(newObj);
+    }
+
+
+    async ngOnInit(): Promise<void> {
         this.lists = await this.listService.getRecentLists(this.amount);
     }
 }
