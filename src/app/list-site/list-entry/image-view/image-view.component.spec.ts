@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ImageViewComponent } from './image-view.component';
+import {ImageViewComponent} from './image-view.component';
 
 describe('ImageViewComponent', () => {
   let component: ImageViewComponent;

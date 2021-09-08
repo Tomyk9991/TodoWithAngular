@@ -1,13 +1,13 @@
 <div *ngIf="entry">
-    <h1>Title: {{this.entry.title}}</h1>
+    <h1>{{this.entry.title}}</h1>
 
-    <u><h2>Content</h2></u>
+    <button (click)="this.onAddList()">➕</button>
 
-    <div *ngFor="let listEntry of this.entry.entries">
+    <div *ngFor="let listEntry of this.entry.entries; index as i">
         <div [ngSwitch]="listEntry.htmlRepresentation()">
             <app-entry-container [entry]="listEntry" [todoList]="entry">
-                <app-string-view [entry]="listEntry" *ngSwitchCase="'1'"></app-string-view>
-                <app-image-view [entry]="listEntry" *ngSwitchCase="'2'"></app-image-view>
+                <app-string-view [elementIndex] = "i" [todoList]="entry" [entry]="listEntry" *ngSwitchCase="'1'"></app-string-view>
+                <app-image-view [elementIndex] = "i" [todoList]="entry" [entry]="listEntry" *ngSwitchCase="'2'"></app-image-view>
             </app-entry-container>
         </div>
     </div>

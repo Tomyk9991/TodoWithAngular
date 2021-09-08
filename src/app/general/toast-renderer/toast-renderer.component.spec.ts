@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ToastRendererComponent } from './toast-renderer.component';
+import {ToastRendererComponent} from './toast-renderer.component';
 
 describe('ToastRendererComponent', () => {
   let component: ToastRendererComponent;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EntryContainerComponent } from './entry-container.component';
+import {EntryContainerComponent} from './entry-container.component';
 
 describe('EntryContainerComponent', () => {
   let component: EntryContainerComponent;

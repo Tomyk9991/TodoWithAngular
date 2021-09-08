@@ -36,7 +36,7 @@ export class MessageboxRendererComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    public caster(message: IMessageBoxContent): HyperLinkMessageContent {
+    public toHyperLinkMessageContent(message: IMessageBoxContent): HyperLinkMessageContent {
         return <HyperLinkMessageContent>message;
     }
 }

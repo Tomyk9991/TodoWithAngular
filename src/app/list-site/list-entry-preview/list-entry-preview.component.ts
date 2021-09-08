@@ -6,13 +6,14 @@ import IMessageBoxContent from "../../Utilities/Services/Message box service/IMe
 import {HeaderMessageContent} from "../../Utilities/Services/Message box service/HeaderMessageContent";
 import HyperLinkMessageContent from "../../Utilities/Services/Message box service/HyperLinkMessageContent";
 import {Router} from "@angular/router";
+import IEditable from "../../Utilities/IEditable";
 
 @Component({
     selector: 'app-list-entry-preview',
     templateUrl: './list-entry-preview.component.html',
     styleUrls: ['./list-entry-preview.component.css']
 })
-export class ListEntryPreviewComponent implements OnInit {
+export class ListEntryPreviewComponent implements IEditable, OnInit {
     @Input() public first: boolean = false;
     @Input() public last: boolean = false;
     @Input() public todoList: ToDoList | undefined;
@@ -54,7 +55,7 @@ export class ListEntryPreviewComponent implements OnInit {
     }
 
     // callback from html
-    public async submit(inputElement: HTMLInputElement): Promise<void> {
+    public async onSubmit(inputElement: HTMLInputElement): Promise<void> {
         let title: string = inputElement.value;
         let titleWithoutSpaces: string = title.replace(/\s/g, "");
 
@@ -62,9 +63,7 @@ export class ListEntryPreviewComponent implements OnInit {
             return;
         }
 
-        console.log(inputElement.value);
-
-        this.lostFocus();
+        this.onLoseFocus();
 
         if (this.todoList !== undefined) {
             this.todoList.title = title;
@@ -93,7 +92,7 @@ export class ListEntryPreviewComponent implements OnInit {
     }
 
     // callback from html
-    public lostFocus(): void {
+    public onLoseFocus(): void {
         this.isEditMode = false;
     }
 
@@ -108,7 +107,7 @@ export class ListEntryPreviewComponent implements OnInit {
     // callback from html
     public deleteEntryPrompt(): void {
         if (this.todoList !== undefined) {
-            let m1: IMessageBoxContent = new HeaderMessageContent("You're about to delete the entry: ");
+            let m1: IMessageBoxContent = new HeaderMessageContent("You're about to delete the list: ");
             let m2: IMessageBoxContent = new HyperLinkMessageContent(`${this.todoList.title}`, `/list/${this.todoList.hash}`);
             let m3: IMessageBoxContent = new HeaderMessageContent("Do you want to continue?");
 

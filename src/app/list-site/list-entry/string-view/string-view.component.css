@@ -1,3 +1,31 @@
 .custom-Background {
     background-color: black;
 }
+
+input[type=text] {
+    height: 34px;
+    position: relative;
+    top: 2px;
+    width: 100%;
+    font-size: 20px;
+    font-family: "Century Gothic";
+    color: white;
+
+    border: 0 none;
+    box-shadow: none;
+
+    background-color: rgba(0, 0, 0, 0);
+}
+
+input[type=text]:focus, textarea[type=text]:focus, select[type=text]:focus{
+    padding-left: 10px;
+    outline: none;
+    text-align: center;
+}
+
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+

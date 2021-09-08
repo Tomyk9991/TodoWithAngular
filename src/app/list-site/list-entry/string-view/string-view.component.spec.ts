@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { StringViewComponent } from './string-view.component';
+import {StringViewComponent} from './string-view.component';
 
 describe('StringViewComponent', () => {
   let component: StringViewComponent;

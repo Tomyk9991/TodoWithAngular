@@ -2,9 +2,10 @@
     <div #blurBackground class="blurBackground">
         <div class="prompt">
             <div *ngFor="let message of this.messages">
-                <div class="center-element"         *ngIf="message.flag == 0">{{message.content}}</div>
+                <div class="centerText"         *ngIf="message.flag == 0">{{message.content}}</div>
                 <h2                                 *ngIf="message.flag == 1">{{message.content}}</h2>
-                <a class="center-element"           *ngIf="message.flag == 2" [href]="this.caster(message).link">{{message.content}}</a>
+                <a class="centerText"           *ngIf="message.flag == 2" [href]="this.toHyperLinkMessageContent(message).link">{{message.content}}</a>
+                <img class="centerImage"                 *ngIf="message.flag == 3" [src]="message.content">
             </div>
             <div class="buttonAlign">
                 <button (click)="this.onPromptAccept()" class="accept">✔</button>

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MessageboxRendererComponent } from './messagebox-renderer.component';
+import {MessageboxRendererComponent} from './messagebox-renderer.component';
 
 describe('MessageboxRendererComponent', () => {
   let component: MessageboxRendererComponent;

@@ -1,1 +1,8 @@
-<h2>{{this.castedEntry?.value}}</h2>
+<div (dblclick)="this.onDoubleClick()">
+    <h2 *ngIf="!this.isEditMode">{{this.castedEntry?.value}}</h2>
+    <input #inputElement *ngIf="this.isEditMode"
+           (focusout)="this.onLoseFocus()"
+           (keyup.enter)="onSubmit(inputElement)"
+           (keyup.escape)="this.onLoseFocus()"
+           type="text" placeholder="{{this.castedEntry?.value}}">
+</div>

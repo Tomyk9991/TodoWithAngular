@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./home-site/home/home.component";
-import {ListOverviewComponent} from "./list-site/list-overview/list-overview.component";
 import {SettingsComponent} from "./settings/settings.component";
 import {ListEntryComponent} from "./list-site/list-entry/list-entry.component";
 import {MyListsComponent} from "./list-site/my-lists/my-lists.component";

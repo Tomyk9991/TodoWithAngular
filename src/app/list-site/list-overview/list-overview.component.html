@@ -1,5 +1,5 @@
 <div>
-    <button (click)="this.onAddList()" class="new-button">➕</button>
+    <button (click)="this.onAddList()">➕</button>
 
     <div *ngFor="let listEntry of lists; index as i">
         <app-list-entry-preview [first]="i === 0"

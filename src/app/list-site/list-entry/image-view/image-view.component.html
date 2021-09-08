@@ -1,1 +1,14 @@
-<img #image (click)="this.imageClicked()" [src]="castedEntry?.value" width="400" alt="Not found :)"/>
+<div (dblclick)="this.onDoubleClick()">
+
+    <img *ngIf="!this.isEditMode" #image
+         (click)="this.imageClicked()"
+         [ngClass]="{ 'zoomedImage' : zoomedImage, 'normalImage': !zoomedImage }"
+         [src]="castedEntry?.value" width="30%" alt="Not found :)"
+    />
+
+    <input #inputElement *ngIf="this.isEditMode"
+           (focusout)="this.onLoseFocus()"
+           (keyup.enter)="onSubmit(inputElement)"
+           (keyup.escape)="this.onLoseFocus()"
+           type="text" placeholder="{{this.castedEntry?.value}}">
+</div>
