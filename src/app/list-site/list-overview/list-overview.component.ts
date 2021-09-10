@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import ToDoList from "../../../Model/ToDoList/ToDoList";
 import {ToDoListService} from "../../Utilities/Services/Todo service/to-do-list.service";
+import Sleep from "../../Utilities/Sleep";
 
 @Component({
     selector: 'app-list-overview',
@@ -10,6 +11,7 @@ import {ToDoListService} from "../../Utilities/Services/Todo service/to-do-list.
 export class ListOverviewComponent implements OnInit {
     @Input() public amount: number = -1; //For effect, ~.component.html
     public lists: ToDoList[] = [];
+    public isLoadingContent: boolean = true;
 
     constructor(private listService: ToDoListService) {
     }
@@ -21,6 +23,20 @@ export class ListOverviewComponent implements OnInit {
 
 
     async ngOnInit(): Promise<void> {
+        this.isLoadingContent = true;
+
         this.lists = await this.listService.getRecentLists(this.amount);
+        await Sleep(7000);
+
+        this.isLoadingContent = false;
+    }
+
+    range(amount: number): number[] {
+        let a: number[] = [];
+        for (let i = 0; i < amount; i++) {
+            a.push(i);
+        }
+
+        return a;
     }
 }

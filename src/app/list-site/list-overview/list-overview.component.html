@@ -1,10 +1,20 @@
 <div>
     <button (click)="this.onAddList()">➕</button>
 
-    <div *ngFor="let listEntry of lists; index as i">
-        <app-list-entry-preview [first]="i === 0"
-                                [last]="i === lists.length - 1"
-                                [todoList]="listEntry">
-        </app-list-entry-preview>
+    <div *ngIf="this.isLoadingContent">
+        <div *ngFor="let i of this.range(5)">
+            <app-list-entry-preview-loadanimation [first]="i === 0"
+                                                  [last]="i === 4">
+            </app-list-entry-preview-loadanimation>
+        </div>
+    </div>
+
+    <div *ngIf="!this.isLoadingContent">
+        <div *ngFor="let listEntry of lists; index as i">
+            <app-list-entry-preview [first]="i === 0"
+                                    [last]="i === lists.length - 1"
+                                    [todoList]="listEntry">
+            </app-list-entry-preview>
+        </div>
     </div>
 </div>

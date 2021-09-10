@@ -1,0 +1,51 @@
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin: 1px;
+    width: 100%;
+}
+
+.skeleton-text {
+    height: 70%;
+    transform: translateY(6px);
+    padding-left: 10px;
+
+    border-radius: 10px;
+}
+
+.skeleton-radio {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.skeleton-x {
+    width: 32px;
+    height: 32px;
+    margin: 5px;
+    border-radius: 32px;
+}
+
+.first {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.last {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: var(--main-grey);
+    }
+
+    100% {
+        filter: brightness(85%);
+    }
+}

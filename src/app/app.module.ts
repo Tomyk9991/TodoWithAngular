@@ -15,6 +15,7 @@ import {EntryContainerComponent} from './list-site/list-entry/entry-container/en
 import {ToastRendererComponent} from './general/toast-renderer/toast-renderer.component';
 import {MyListsComponent} from './list-site/my-lists/my-lists.component';
 import {MessageboxRendererComponent} from './general/messagebox-renderer/messagebox-renderer.component';
+import { ListEntryPreviewLoadanimationComponent } from './list-site/list-entry-preview-loadanimation/list-entry-preview-loadanimation.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MessageboxRendererComponent} from './general/messagebox-renderer/message
     EntryContainerComponent,
     ToastRendererComponent,
     MyListsComponent,
-    MessageboxRendererComponent
+    MessageboxRendererComponent,
+    ListEntryPreviewLoadanimationComponent
   ],
   imports: [
     BrowserModule,
